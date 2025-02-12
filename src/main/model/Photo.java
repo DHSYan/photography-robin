@@ -7,12 +7,15 @@ public class Photo {
 
     // Rating from 0 to 5, -1 means no rating given
     private int rating; 
+    private static final int DEFAULT_RATING = -1;
 
+    private String path; 
+    private int rating; // Rating from 0 to 5, -1 means no rating given
     private boolean toDelete;
 
     public Photo(String path) {
         this.path = path;
-        this.rating = -1;
+        this.rating = DEFAULT_RATING;
         this.toDelete = false;
     }
 

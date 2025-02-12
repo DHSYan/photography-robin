@@ -9,16 +9,38 @@ public class PhotoManagerApp {
     private Scanner input;
 
     public PhotoManagerApp() {
+        runPhotoManager();
     }
 
     // MODIFIES: this
     // EFFECTS: process user input
     public void runPhotoManager() {
+        boolean loop = true;
+        String userCommand = null;
+
+        System.out.println("Welcome to Photo Manager!\n");
+
+        init();
+
+        while (loop) {
+            displayMenu();
+
+            userCommand = input.next();
+            
+            if (userCommand.equals("q")) {
+                loop = false;
+            } else {
+                processCommand(userCommand);
+            }
+        }
+
+        System.out.println("\n Thanks for using Photo Manager");
     }
 
     // MODIFIES: this
     // EFFECTS: initializes PhotoManager 
     public void init() {
+        pm = new PhotoManager();
     }
     
     // EFFECTS: displays menu, with options of command available

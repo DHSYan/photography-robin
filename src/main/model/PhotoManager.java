@@ -7,13 +7,15 @@ import java.util.ArrayList;
 public class PhotoManager {
     private ArrayList<Photo> lop;
 
+    // EFFECTS: creates an instance of the PhotoManager class, and initalizes 
+    //          an empty array list for the list of the photos.
     public PhotoManager() {
         lop = new ArrayList<Photo>();
     }
 
     // MODIFIES: this 
-    // EFFECT: add Photo to the PhotoManager if it doesn't already exists, 
-    // returns true if photo was added, false otherwise.
+    // EFFECTS: add Photo to the PhotoManager if it doesn't already exists, 
+    //          returns true if photo was added, false otherwise.
     public boolean addPhoto(Photo p) {
         boolean result = false;
         if (!lop.contains(p)) {
@@ -24,10 +26,9 @@ public class PhotoManager {
         return result;
     }
 
-
     // REQUIRES: 0 <= rating <= 5
     // EFFECTS: returns a list of photo that matches the requested rating, 
-    // if the list of photo is empty, null is returned
+    //          if the list of photo is empty, null is returned
     public ArrayList<Photo> filterRatedPhotos(int rating) {
         ArrayList<Photo> result = new ArrayList<Photo>();
 
@@ -44,6 +45,7 @@ public class PhotoManager {
         return result;
     }
 
+    // EFFECTS: returns a list of all the photos in the PhotoManager
     public ArrayList<Photo> getPhotos() {
         return lop;
     }

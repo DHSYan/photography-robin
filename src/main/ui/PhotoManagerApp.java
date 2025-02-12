@@ -1,0 +1,51 @@
+package ui;
+
+import java.util.Scanner;
+
+import model.PhotoManager;
+
+public class PhotoManagerApp {
+    private PhotoManager pm;
+    private Scanner input;
+
+    public PhotoManagerApp() {
+    }
+
+    // MODIFIES: this
+    // EFFECTS: process user input
+    public void runPhotoManager() {
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes PhotoManager 
+    public void init() {
+    }
+    
+    // EFFECTS: displays menu, with options of command available
+    public void displayMenu() {
+        System.out.print("Menu:\n");
+        System.out.print("\ta - add photos");
+        System.out.print("\tv - view photos");
+        // TODO
+    }
+
+    // MODIFIES: this
+    // EFFECTS: process user command
+    public void processCommand(String command) {
+        // stub
+    }
+
+    // TODO
+    // MODIFIES: this
+    // EFFECTS: displays all the photo one by one, and asking for actions to be done 
+    //          on the current photo
+    public void doViewPhotos() {
+        // stub
+    }
+
+
+}
+
+// Referenced:
+//   - TellerApp provided on the Project Description Page for Phase 1 for the 
+//     overall structure of a UI component

@@ -1,6 +1,7 @@
 package model;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -53,6 +54,26 @@ public class TestPhotoManager {
     void testConstructor() {
         assertEquals(0, empty.getPhotos().size());
         assertEquals(0, (new PhotoManager()).getPhotos().size());
+    }
+
+    @Test
+    void testAddPhoto() {
+        ArrayList<Photo> result = new ArrayList<Photo>();
+        
+        // add a photo that already exists
+        assertFalse(pm1.addPhoto(p1));
+
+        assertTrue(pm1.addPhoto(p3));
+        assertTrue(pm1.getPhotos().contains(p3));
+
+        assertTrue(pm1.addPhoto(p2));
+        assertTrue(pm1.getPhotos().contains(p2));
+
+        result.add(p1);
+        result.add(p3);
+        result.add(p2);
+
+        assertTrue(result.equals(pm1.getPhotos()));
     }
 
     @Test

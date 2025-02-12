@@ -36,7 +36,7 @@ public class Photo {
         this.path = path;
     }
 
-    public boolean isToDelete() {
+    public boolean getToDelete() {
         return this.toDelete;
     }
 

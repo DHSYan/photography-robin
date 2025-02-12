@@ -25,7 +25,7 @@ public class TestPhoto {
     @Test
     public void testConstructor() {
         assertEquals("/home/tzen/cpsc210/ProjectStarter/photos/IMG_1672.JPG", p1.getPath());
-        assertFalse(p1.isToDelete());
+        assertFalse(p1.getToDelete());
         assertEquals(-1, p1.getRating());
     }
 
@@ -55,27 +55,27 @@ public class TestPhoto {
 
     @Test
     public void testSetToDelete() {
-        assertFalse(p1.isToDelete());
-        assertFalse(p2.isToDelete());
-        assertFalse(p3.isToDelete());
+        assertFalse(p1.getToDelete());
+        assertFalse(p2.getToDelete());
+        assertFalse(p3.getToDelete());
 
         p1.setToDelete();
 
-        assertTrue(p1.isToDelete());
-        assertFalse(p2.isToDelete());
-        assertFalse(p3.isToDelete());
+        assertTrue(p1.getToDelete());
+        assertFalse(p2.getToDelete());
+        assertFalse(p3.getToDelete());
 
         p1.setToDelete();
 
-        assertTrue(p1.isToDelete());
-        assertFalse(p2.isToDelete());
-        assertFalse(p3.isToDelete());
+        assertTrue(p1.getToDelete());
+        assertFalse(p2.getToDelete());
+        assertFalse(p3.getToDelete());
 
         p2.setToDelete();
         
-        assertTrue(p1.isToDelete());
-        assertTrue(p2.isToDelete());
-        assertFalse(p3.isToDelete());
+        assertTrue(p1.getToDelete());
+        assertTrue(p2.getToDelete());
+        assertFalse(p3.getToDelete());
     }
 
     @Test
@@ -96,15 +96,15 @@ public class TestPhoto {
 
     @Test
     public void isToDelete() {
-        assertFalse(p1.isToDelete());
-        assertFalse(p2.isToDelete());
-        assertFalse(p3.isToDelete());
+        assertFalse(p1.getToDelete());
+        assertFalse(p2.getToDelete());
+        assertFalse(p3.getToDelete());
 
         p1.setToDelete();
 
-        assertTrue(p1.isToDelete());
-        assertFalse(p2.isToDelete());
-        assertFalse(p3.isToDelete());
+        assertTrue(p1.getToDelete());
+        assertFalse(p2.getToDelete());
+        assertFalse(p3.getToDelete());
     }
 
     @Test

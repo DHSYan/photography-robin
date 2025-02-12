@@ -8,6 +8,7 @@ public class PhotoManagerApp {
     private PhotoManager pm;
     private Scanner input;
 
+    // EFFECTS: runs the PhotoManager Application
     public PhotoManagerApp() {
         runPhotoManager();
     }

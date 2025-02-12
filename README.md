@@ -34,5 +34,5 @@ This project seeks to smooth out this process down to ***one*** keystroke.
 
 > As a user, I want to give ratings to my photos
 
-> As a user, I want to know which photos are trash.
+> As a user, I want to know which photos are trash and need to be deleted.
 

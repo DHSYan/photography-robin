@@ -2,11 +2,6 @@
 package model;
 
 public class Photo {
-    // Path to the Photo on System
-    private String path; 
-
-    // Rating from 0 to 5, -1 means no rating given
-    private int rating; 
     private static final int DEFAULT_RATING = -1;
 
     private String path; 
@@ -25,7 +20,7 @@ public class Photo {
     }
 
     public void removeRating() {
-        this.rating = -1;
+        this.rating = DEFAULT_RATING;
     }
 
     public void setToDelete() {

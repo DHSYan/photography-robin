@@ -41,14 +41,15 @@ public class PhotoManagerApp {
     // MODIFIES: this
     // EFFECTS: initializes PhotoManager 
     public void init() {
+        input = new Scanner(System.in);
         pm = new PhotoManager();
     }
     
     // EFFECTS: displays menu, with options of command available
     public void displayMenu() {
         System.out.print("Menu:\n");
-        System.out.print("\ta - add photos");
-        System.out.print("\tv - view photos");
+        System.out.print("\ta - add photos\n");
+        System.out.print("\tv - view photos\n");
         // TODO
     }
 

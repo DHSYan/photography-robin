@@ -121,4 +121,40 @@ public class TestPhotoManager {
         assertTrue(pm2.findPhoto("/home/tzen/cpsc210/ProjectStarter/photos/IMG_2221.JPG").equals(p3));
     }
 
+    @Test
+    void testFilterToBeDeleted() {
+        ArrayList<String> target = new ArrayList<String>(); 
+        ArrayList<String> target2 = new ArrayList<String>(); 
+        ArrayList<String> target3 = new ArrayList<String>(); 
+
+        assertTrue(pm1.filterToBeDeleted().equals(target));
+        assertTrue(pm2.filterToBeDeleted().equals(target));
+        assertTrue(empty.filterToBeDeleted().equals(target));
+
+        p1.setToDelete();
+
+        target.add(p1.getPath());
+
+        assertTrue(pm1.filterToBeDeleted().equals(target));
+        assertTrue(pm2.filterToBeDeleted().equals(target));
+        assertFalse(empty.filterToBeDeleted().equals(target));
+
+        p3.setToDelete();
+        
+        target2.add(p1.getPath());
+        target2.add(p3.getPath());
+
+        assertTrue(pm1.filterToBeDeleted().equals(target));
+        assertFalse(pm2.filterToBeDeleted().equals(target));
+        assertTrue(pm2.filterToBeDeleted().equals(target2));
+
+        p2.setToDelete();
+
+
+        target3.add(p1.getPath());
+        target3.add(p2.getPath());
+        target3.add(p3.getPath());
+
+        assertTrue(pm2.filterToBeDeleted().equals(target3));
+    }
 }

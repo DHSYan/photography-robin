@@ -63,5 +63,9 @@ public class PhotoManager {
     public ArrayList<Photo> getPhotos() {
         return lop;
     }
+
+    // EFFECTS: returns a list of Photo's string that is tagged with being deleted
+    public ArrayList<String> filterToBeDeleted() {
+    }
     
 }

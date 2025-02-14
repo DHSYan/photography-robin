@@ -66,6 +66,15 @@ public class PhotoManager {
 
     // EFFECTS: returns a list of Photo's string that is tagged with being deleted
     public ArrayList<String> filterToBeDeleted() {
+        ArrayList<String> result = new ArrayList<String>();
+
+        for (Photo p : lop) {
+            if (p.getToDelete() == true) {
+                result.add(p.getPath());
+            }
+        }
+
+        return result;
     }
     
 }

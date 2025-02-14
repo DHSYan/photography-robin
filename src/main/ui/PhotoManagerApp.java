@@ -88,6 +88,7 @@ public class PhotoManagerApp {
             System.out.println("\tn - next");
             System.out.println("\tr - give rating");
             System.out.println("\tt - set to delete flag");
+            System.out.println("\tq - Quit");
 
             String photoViewerCommand = input.next();
             

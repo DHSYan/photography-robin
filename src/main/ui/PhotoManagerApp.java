@@ -52,6 +52,7 @@ public class PhotoManagerApp {
         System.out.print("\ta - add photos\n");
         System.out.print("\tv - view photos\n");
         System.out.print("\td - view to be deleted photos\n");
+        System.out.println("\tq - Quit");
     }
 
     // MODIFIES: this
@@ -88,7 +89,6 @@ public class PhotoManagerApp {
             System.out.println("\tn - next");
             System.out.println("\tr - give rating");
             System.out.println("\tt - set to delete flag");
-            System.out.println("\tq - Quit");
 
             String photoViewerCommand = input.next();
             

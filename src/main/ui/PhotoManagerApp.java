@@ -119,6 +119,7 @@ public class PhotoManagerApp {
         pm.addPhoto(new Photo(path));
     }
 
+    // EFFECTS: print all the photo's path whose deleted tag is on
     public void viewToBeDeleted() {
         for (String path : pm.filterToBeDeleted()) {
             System.out.println(path);

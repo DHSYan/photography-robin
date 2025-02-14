@@ -45,6 +45,11 @@ public class PhotoManager {
         return result;
     }
 
+    // EFFECTS: returns the photo whose have the given path, if no photo exists with this path, 
+    //          null is returned
+    public Photo findPhoto(String path) { 
+    }
+
     // EFFECTS: returns a list of all the photos in the PhotoManager
     public ArrayList<Photo> getPhotos() {
         return lop;

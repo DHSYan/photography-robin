@@ -107,4 +107,18 @@ public class TestPhotoManager {
         assertTrue(target3.equals(pm2.getPhotos()));
     }
 
+    @Test
+    void testFindPhoto() {
+        assertNull(empty.findPhoto("any"));
+        assertNull(empty.findPhoto(""));
+        assertNull(pm1.findPhoto("null"));
+        assertNull(pm1.findPhoto("/home/tzen/cpsc210/ProjectStarter/photos/IMG_1672.JpG"));
+
+        assertTrue(pm1.findPhoto("/home/tzen/cpsc210/ProjectStarter/photos/IMG_1672.JPG").equals(p1));
+
+        assertTrue(pm2.findPhoto("/home/tzen/cpsc210/ProjectStarter/photos/IMG_1672.JPG").equals(p1));
+        assertTrue(pm2.findPhoto("/home/tzen/cpsc210/ProjectStarter/photos/IMG_1778.JPG").equals(p2));
+        assertTrue(pm2.findPhoto("/home/tzen/cpsc210/ProjectStarter/photos/IMG_2221.JPG").equals(p3));
+    }
+
 }

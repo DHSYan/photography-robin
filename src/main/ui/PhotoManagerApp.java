@@ -51,6 +51,7 @@ public class PhotoManagerApp {
         System.out.print("Menu:\n");
         System.out.print("\ta - add photos\n");
         System.out.print("\tv - view photos\n");
+        System.out.print("\td - view to be deleted photos\n");
     }
 
     // MODIFIES: this
@@ -60,6 +61,10 @@ public class PhotoManagerApp {
             doAddPhoto();
         } else if (command.equals("v")) {
             doViewPhotos();
+        } else if (command.equals("d")) { 
+            viewToBeDeleted();
+        } else {
+            System.out.println("Invalid Command!");
         }
     }
 
@@ -113,6 +118,11 @@ public class PhotoManagerApp {
         pm.addPhoto(new Photo(path));
     }
 
+    public void viewToBeDeleted() {
+        for (String path : pm.filterToBeDeleted()) {
+            System.out.println(path);
+        }
+    }
 
 }
 

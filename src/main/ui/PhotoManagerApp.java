@@ -2,6 +2,7 @@ package ui;
 
 import java.util.Scanner;
 
+import model.Photo;
 import model.PhotoManager;
 
 public class PhotoManagerApp {
@@ -50,21 +51,66 @@ public class PhotoManagerApp {
         System.out.print("Menu:\n");
         System.out.print("\ta - add photos\n");
         System.out.print("\tv - view photos\n");
-        // TODO
     }
 
     // MODIFIES: this
     // EFFECTS: process user command
     public void processCommand(String command) {
-        // stub
+        if (command.equals("a")) { 
+            doAddPhoto();
+        } else if (command.equals("v")) {
+            doViewPhotos();
+        }
     }
 
-    // TODO
     // MODIFIES: this
     // EFFECTS: displays all the photo one by one, and asking for actions to be done 
     //          on the current photo
     public void doViewPhotos() {
-        // stub
+        for (Photo p : pm.getPhotos()) {
+            photoViewer(p);
+        }
+    }
+
+    // MODIFIES: p
+    // EFFECTS: display and retrieves actions to be done on the photo
+    public void photoViewer(Photo p) {
+        boolean isDone = false;
+        
+        while (!isDone) {
+            System.out.println(p.getPath());
+            System.out.println("Options: ");
+            System.out.println("\tn - next");
+            System.out.println("\tr - give rating");
+            System.out.println("\tt - set to delete flag");
+
+            String photoViewerCommand = input.next();
+            
+            if (photoViewerCommand.equals("n")) {
+                isDone = true;
+            } else {
+                if (photoViewerCommand.equals("t")) {
+                    p.setToDelete();
+                } else if (photoViewerCommand.equals("r")) {
+                    String rating = input.next();
+                    if (rating.length() != 1) {
+                        System.out.println("Rating must be between 0 and 5");
+                    } else { 
+                        p.setRating(rating.charAt(0) - '0');
+                    }
+                } 
+            }
+        }
+
+    }
+
+    // MODIFIES: this
+    // EFFECTS: add photo to PhotoManager
+    public void doAddPhoto() {
+        System.out.println("Enter the path of the photo");
+        String path = input.next();
+
+        pm.addPhoto(new Photo(path));
     }
 
 

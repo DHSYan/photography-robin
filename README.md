@@ -36,3 +36,7 @@ This project seeks to smooth out this process down to ***one*** keystroke.
 
 > As a user, I want to know which photos are trash and need to be deleted.
 
+> As a user, I want to have the option to save my photo'ss metadata to file
+
+> As a user, I want to have the option to load my photo's metadata 
+from a file.

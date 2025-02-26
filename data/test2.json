@@ -1,0 +1,19 @@
+{
+    "lop": [
+        {
+            "path": "./photos/IMG_1672.JPG",
+            "rating": 0,
+            "toDelete": true
+        },
+        {
+            "path": "./photos/IMG_1778.JPG",
+            "rating": 3,
+            "toDelete": false
+        },
+        {
+            "path": "./photos/IMG_2221.JPG",
+            "rating": 5,
+            "toDelete": true
+        }
+    ]
+}

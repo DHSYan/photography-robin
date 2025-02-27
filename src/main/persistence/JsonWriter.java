@@ -2,6 +2,7 @@ package persistence;
 
 import model.PhotoManager;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import org.json.JSONObject;
@@ -10,21 +11,22 @@ public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
     private PhotoManager pm;
+    private String filePath;
 
     // EFFECTS: Constructs a JsonWriter class, opens a writer with path
-    void JsonWriter(String path) {
-        // Stub
+    public JsonWriter(String path) {
+        return;
     }
 
     // MODIFIES: this
     // EFFECTS: Writes to Json
-    void write() {
+    public void write(String content) throws IOException {
         return;
     }
 
     // MODIFIES: this 
     // EFFECTS: closes the writer
-    void close() {
+    public void close() {
         return;
     }
 }

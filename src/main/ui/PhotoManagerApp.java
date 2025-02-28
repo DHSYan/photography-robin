@@ -6,7 +6,7 @@ import java.util.Scanner;
 import model.Photo;
 import model.PhotoManager;
 import persistence.JsonReader;
-import persistance.JsonWriter;
+import persistence.JsonWriter;
 
 public class PhotoManagerApp {
     private PhotoManager pm;

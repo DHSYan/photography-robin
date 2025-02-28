@@ -40,7 +40,7 @@ public class TestJsonWriter {
     void testInvalidFile() { 
         try {
             writer = new JsonWriter("./data/snhaoelrcuh.archlrch");
-            writer.write("test");
+            writer.write(pm1);
             fail("IOException should've been thrown");
         } catch (IOException e) {
             // pass
@@ -49,6 +49,13 @@ public class TestJsonWriter {
 
     @Test
     void testWrite() { 
+        try {
+            writer = new JsonWriter("./data/session.json");
+            writer.write(pm1);
+            // Need JsonReader
+        } catch (Exception e) {
+            fail("Shouldn't fail here");
+        }
     }
 
     @Test

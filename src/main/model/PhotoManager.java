@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import persistence.JsonReader;
 
 // Photomanager managens Photos, giving ratings, 
 // tagging each photo with specific information etc.

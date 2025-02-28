@@ -3,7 +3,6 @@ package persistance;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
@@ -46,7 +45,7 @@ public class TestJsonReader {
     public void testJsonReaderInvalidFile() {
         JsonReader reader = new JsonReader("./data/invalid.json");
         try {
-            PhotoManager pm = reader.read();
+            reader.read();
             fail("IOException expected");
         } catch (IOException e) {
             // pass

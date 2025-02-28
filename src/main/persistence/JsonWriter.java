@@ -20,7 +20,7 @@ public class JsonWriter {
 
     // MODIFIES: this
     // EFFECTS: Writes to Json
-    public void write(String content) throws IOException {
+    public void write(PhotoManager pm) throws IOException {
         return;
     }
 

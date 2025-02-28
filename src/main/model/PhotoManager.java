@@ -82,12 +82,14 @@ public class PhotoManager {
     }
     
     // The below was referenced from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.javaj
+    // EFFECTS: returns an JSONObject of PhotoManager
     public JSONObject toJson() {
         JSONObject res = new JSONObject();
         res.put("lop", lopToJson());
         return res;
     }
 
+    // EFFECTS: returns an JSONArray for the list of photos in PhotoManager
     private JSONArray lopToJson() {
         JSONArray jsonArray = new JSONArray();
 
@@ -97,4 +99,5 @@ public class PhotoManager {
 
         return jsonArray;
     }
+
 }

@@ -10,21 +10,23 @@ import org.json.JSONObject;
 
 public class JsonWriter {
     private static final int TAB = 4;
+
     private PrintWriter writer;
     private String path;
 
-    // EFFECTS: Constructs a JsonWriter class, opens a writer with path
+    // EFFECTS: Constructs a JsonWriter class, opens a writer with path.
     public JsonWriter(String path) {
         this.path = path;
     }
 
     // MODIFIES: this
+    // EFFECTS: opens and constructs a PrintWriter. Throws exceptions when file does not exists.
     private void open() throws FileNotFoundException {
         writer = new PrintWriter(new File(path));
     }
 
     // MODIFIES: this
-    // EFFECTS: Writes to Json
+    // EFFECTS: Writes to PrintWriter, throws exceptions if file attempting to write to does not exists.
     public void write(PhotoManager pm) throws FileNotFoundException {
         open();
         JSONObject json = pm.toJson();

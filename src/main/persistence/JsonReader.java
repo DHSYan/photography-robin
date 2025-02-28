@@ -19,8 +19,8 @@ public class JsonReader {
         this.path = path;
     }
 
-    
-    // EFFECTS: reads source file as string and returns it as String
+    // EFFECTS: reads source file as string and returns it as String, throwns an Exception
+    //          if there are errors with the input stream
     private String readFile() throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
@@ -31,6 +31,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
+    // EFFECTS: parses the JSON String and returns a PhotoManager
     private PhotoManager parse(String data) {
         PhotoManager res = new PhotoManager();
 
@@ -54,8 +55,11 @@ public class JsonReader {
         return res;
     }
 
+    // EFFECTS: Wrapper and a function composition of parse() and readFile();
     public PhotoManager read() throws IOException {
         return parse(readFile());
     }
 
 }
+// Citation: 
+// Much of the outline of this JsonWriter class is taken from the CPSC210/JsonSerializationDemo repo

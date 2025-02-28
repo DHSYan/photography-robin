@@ -41,6 +41,7 @@ public class TestJsonReader {
         assertNotNull(p3);
     }
 
+
     @Test
     public void testJsonReaderInvalidFile() {
         JsonReader reader = new JsonReader("./data/invalid.json");
@@ -51,6 +52,17 @@ public class TestJsonReader {
             // pass
         } catch (Exception e) {
             fail("An exception of such type shouldn't be thrown");
+        }
+    }
+    
+    @Test
+    public void testEmptyJsonFile() {
+        JsonReader reader = new JsonReader("./data/empty.json");
+        try {
+            PhotoManager pm = reader.read();
+            assertEquals(pm.getPhotos().size(), 0);
+        } catch (Exception e) {
+            fail("Exceptions shouldn't been thrown");
         }
     }
 

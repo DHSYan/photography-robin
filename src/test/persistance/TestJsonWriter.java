@@ -1,15 +1,18 @@
 package persistance;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
-import java.net.URL;
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import model.Photo;
 import model.PhotoManager;
+import persistence.JsonReader;
 import persistence.JsonWriter;
 
 public class TestJsonWriter {
@@ -37,9 +40,10 @@ public class TestJsonWriter {
     }
 
     @Test
-    void testInvalidFile() { 
+    // illegal file name
+    public void testInvalidFile() { 
         try {
-            writer = new JsonWriter("./data/snhaoelrcuh.archlrch");
+            writer = new JsonWriter("./data/snhaoelr:.cuh.archlrch");
             writer.write(pm1);
             fail("IOException should've been thrown");
         } catch (IOException e) {
@@ -48,18 +52,72 @@ public class TestJsonWriter {
     }
 
     @Test
-    void testWrite() { 
+    public void testWriteEmpty() {
         try {
-            writer = new JsonWriter("./data/session.json");
+            writer = new JsonWriter("./data/write0.json");
+            writer.write(new PhotoManager());
+
+            JsonReader reader = new JsonReader("./data/write0.json");
+            PhotoManager check = reader.read();
+            assertEquals(check.getPhotos().size(), 0);
+        } catch (Exception e) {
+            fail("No exceptions should be thown");
+        }
+    }
+
+    @Test
+    public void testWriteSimple() { 
+        try {
+            writer = new JsonWriter("./data/write1.json");
+
             writer.write(pm1);
-            // Need JsonReader
+
+            JsonReader reader = new JsonReader("./data/write1.json");
+
+            PhotoManager check = reader.read();
+            
+            Photo checkP = check.findPhoto(p1.getPath());
+            assertEquals(check.getPhotos().size(), 1);
+            assertNull(check.findPhoto("nothing"));
+            assertNotNull(checkP);
+            assertEquals(checkP.getPath(), p1.getPath());
+            assertEquals(checkP.getRating(), p1.getRating());
+            assertEquals(checkP.getToDelete(), p1.getToDelete());
         } catch (Exception e) {
             fail("Shouldn't fail here");
         }
     }
 
     @Test
-    void testClose() {
+    public void testWriteComplex() {
+        try {
+            writer = new JsonWriter("./data/write2.json");
+
+            writer.write(pm2);
+
+            JsonReader reader = new JsonReader("./data/write1.json");
+
+            PhotoManager check = reader.read();
+            
+            assertEquals(check.getPhotos().size(), 3);
+
+            Photo cp1 = check.findPhoto(p1.getPath());
+            assertEquals(cp1.getPath(), p1.getPath());
+            assertEquals(cp1.getRating(), p1.getRating());
+            assertEquals(cp1.getToDelete(), p1.getToDelete());
+            
+            Photo cp2 = check.findPhoto(p2.getPath());
+            assertEquals(cp2.getPath(), p2.getPath());
+            assertEquals(cp2.getRating(), p2.getRating());
+            assertEquals(cp2.getToDelete(), p2.getToDelete());
+            
+            Photo cp3 = check.findPhoto(p3.getPath());
+            assertEquals(cp3.getPath(), p3.getPath());
+            assertEquals(cp3.getRating(), p3.getRating());
+            assertEquals(cp3.getToDelete(), p3.getToDelete());
+        } catch (Exception e) {
+            fail("Shouldn't fail here");
+        }
     }
 
 }

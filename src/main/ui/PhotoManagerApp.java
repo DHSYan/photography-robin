@@ -6,6 +6,7 @@ import java.util.Scanner;
 import model.Photo;
 import model.PhotoManager;
 import persistence.JsonReader;
+import persistance.JsonWriter;
 
 public class PhotoManagerApp {
     private PhotoManager pm;
@@ -55,6 +56,7 @@ public class PhotoManagerApp {
         System.out.print("\tv - view photos\n");
         System.out.print("\td - view to be deleted photos\n");
         System.out.print("\tl - load existing data\n");
+        System.out.print("\ts - save current photomanager\n");
         System.out.println("\tq - Quit");
     }
 
@@ -69,14 +71,36 @@ public class PhotoManagerApp {
             viewToBeDeleted();
         } else if (command.equals("l")) {
             doLoadData();
+        } else if (command.equals("s")) {
+            doSaveData();
         } else {
             System.out.println("Invalid Command!");
         }
     }
 
     // MODIFIES: this 
+    // EFFECTS: save the current state of the PhotoManager to a JSON File, return false if unsuccessful
+    public boolean doSaveData() {
+        boolean status = false;
+
+        System.out.println("Enter the name of the file:");
+        String path = input.next();
+
+        JsonWriter writer = new JsonWriter(path);
+
+        try {
+            writer.write(pm);
+            status = true;
+        } catch (IOException e) {
+            System.out.println("Can't create a file, maybe you run out of disk space?");
+        }
+
+        return status;
+    }
+
+
+    // MODIFIES: this 
     // EFFECTS: loads an existing data, returns true if sucessful
-    
     public boolean doLoadData() {
         boolean status = false;
         System.out.println("Enter the relative path of the json file");

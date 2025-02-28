@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import model.Photo;
 import model.PhotoManager;
@@ -25,11 +25,20 @@ public class TestJsonWriter {
 
     @BeforeEach
     void setup() {
-        p1 = new Photo("./photos/IMG_1672.JPG");
-        p2 = new Photo("./photos/IMG_1778.JPG");
-        p3 = new Photo("./photos/IMG_2221.JPG");
         pm1 = new PhotoManager();
         pm2 = new PhotoManager();
+
+        
+        p1 = new Photo("./photos/IMG_1672.JPG");
+        p1.setRating(0);
+        p1.setToDelete();
+
+        p2 = new Photo("./photos/IMG_1778.JPG");
+        p2.setRating(3);
+
+        p3 = new Photo("./photos/IMG_2221.JPG");
+        p3.setRating(5);;
+        p3.setToDelete();
 
 
         pm1.addPhoto(p1);
@@ -43,7 +52,7 @@ public class TestJsonWriter {
     // illegal file name
     public void testInvalidFile() { 
         try {
-            writer = new JsonWriter("./data/snhaoelr:.cuh.archlrch");
+            writer = new JsonWriter("./data/snha:oe\0lr:.cuh.archlrch");
             writer.write(pm1);
             fail("IOException should've been thrown");
         } catch (IOException e) {
@@ -84,7 +93,7 @@ public class TestJsonWriter {
             assertEquals(checkP.getRating(), p1.getRating());
             assertEquals(checkP.getToDelete(), p1.getToDelete());
         } catch (Exception e) {
-            fail("Shouldn't fail here");
+            fail(e.getMessage());
         }
     }
 
@@ -95,7 +104,7 @@ public class TestJsonWriter {
 
             writer.write(pm2);
 
-            JsonReader reader = new JsonReader("./data/write1.json");
+            JsonReader reader = new JsonReader("./data/write2.json");
 
             PhotoManager check = reader.read();
             
@@ -116,7 +125,7 @@ public class TestJsonWriter {
             assertEquals(cp3.getRating(), p3.getRating());
             assertEquals(cp3.getToDelete(), p3.getToDelete());
         } catch (Exception e) {
-            fail("Shouldn't fail here");
+            fail(e.getMessage());
         }
     }
 

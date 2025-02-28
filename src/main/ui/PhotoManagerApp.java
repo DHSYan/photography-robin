@@ -1,9 +1,11 @@
 package ui;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import model.Photo;
 import model.PhotoManager;
+import persistence.JsonReader;
 
 public class PhotoManagerApp {
     private PhotoManager pm;
@@ -52,6 +54,7 @@ public class PhotoManagerApp {
         System.out.print("\ta - add photos\n");
         System.out.print("\tv - view photos\n");
         System.out.print("\td - view to be deleted photos\n");
+        System.out.print("\tl - load existing data\n");
         System.out.println("\tq - Quit");
     }
 
@@ -64,10 +67,31 @@ public class PhotoManagerApp {
             doViewPhotos();
         } else if (command.equals("d")) { 
             viewToBeDeleted();
+        } else if (command.equals("l")) {
+            doLoadData();
         } else {
             System.out.println("Invalid Command!");
         }
     }
+
+    // MODIFIES: this 
+    // EFFECTS: loads an existing data, returns true if sucessful
+    
+    public boolean doLoadData() {
+        boolean status = false;
+        System.out.println("Enter the relative path of the json file");
+        String path = input.next();
+        JsonReader reader = new JsonReader(path);
+
+        try {
+            pm = reader.read();
+            status = true;
+        } catch (IOException e) {
+            System.out.println("Can't find the file, typo?");
+        }
+        return status;
+    }
+
 
     // MODIFIES: this
     // EFFECTS: displays all the photo one by one, and asking for actions to be done 

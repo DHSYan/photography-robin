@@ -19,10 +19,9 @@ public class TestJsonReader {
     private Photo p1;
     private Photo p2;
     private Photo p3;
-    private Photo p4;
 
     @BeforeEach 
-    void setup() {
+    public void setup() {
         // Reflect test1.json and test2.json
         p1 = new Photo("./photos/IMG_1672.JPG");
         p1.setRating(0);
@@ -35,10 +34,10 @@ public class TestJsonReader {
         p3.setRating(5);;
         p3.setToDelete();
 
-        p4 = new Photo("");
     }
 
-    void testJsonReaderInvalidFile() {
+    @Test
+    public void testJsonReaderInvalidFile() {
         JsonReader reader = new JsonReader("./data/invalid.json");
         try {
             PhotoManager pm = reader.read();
@@ -46,14 +45,14 @@ public class TestJsonReader {
         } catch (IOException e) {
             // pass
         } catch (Exception e) {
-            fail();
+            fail("An exception of such type shouldn't be thrown");
         }
     }
 
 
     @Test
     // One photo entry
-    void testJsonReaderSimple() {
+    public void testJsonReaderSimple() {
         JsonReader reader = new JsonReader("./data/test1.json");
         ArrayList<Photo> target = new ArrayList<Photo>();
         target.add(p1);
@@ -63,17 +62,29 @@ public class TestJsonReader {
             assertEquals(pm.getPhotos().size(), 1);
             assertTrue(pm.getPhotos().equals(target));
         } catch (Exception e) {
-            fail();
+            fail("An exception shouldn't be thrown");
         }
     }
 
 
+    @Test
     // Three Photo entry
-    void testJsonReaderHard() {
+    public void testJsonReaderHard() {
+        JsonReader reader = new  JsonReader("./data/test2.json");
+        ArrayList<Photo> target = new ArrayList<Photo>();
+
+        target.add(p1);
+        target.add(p2);
+        target.add(p3);
+
+        try {
+            PhotoManager pm = reader.read();
+            assertEquals(pm.getPhotos().size(), 3);
+            assertTrue(pm.getPhotos().equals(target));
+        } catch (Exception e) {
+            fail("An exception shouldn't be thrown");
+        }
 
     }
-
-
-
     
 }

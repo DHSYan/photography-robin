@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import model.Photo;
 import model.PhotoManager;
 
-// import org.json.*;
+import org.json.*;
 
 public class JsonReader {
     private String path;
@@ -22,28 +22,23 @@ public class JsonReader {
 
     
     // EFFECTS: reads source file as string and returns it as String
-    private String readFile(String source) throws IOException {
+    private String readFile() throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
-        try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
+        try (Stream<String> stream = Files.lines(Paths.get(path), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
         }
 
         return contentBuilder.toString();
     }
 
-
-    // MODIFIES: this
-    // EFFECTS: stores the JSON content as String 
-    public void open() throws IOException {
-        jsonData = readFile(path);
-    }
-
-    public PhotoManager parseJson(String jsonContent) {
+    public PhotoManager parse(String data) {
         PhotoManager res = new PhotoManager();
 
         return res;
     }
 
+    public PhotoManager read() throws IOException {
+    }
 
 }

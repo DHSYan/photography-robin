@@ -13,7 +13,6 @@ import org.json.*;
 
 public class JsonReader {
     private String path;
-    private String jsonData;
 
     // EFFECTS: Constructs a JSON Reader 
     public JsonReader(String path) {
@@ -32,13 +31,31 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    public PhotoManager parse(String data) {
+    private PhotoManager parse(String data) {
         PhotoManager res = new PhotoManager();
+
+        JSONObject toParse = new JSONObject(data);
+
+        JSONArray jsonLop = toParse.getJSONArray("lop");
+
+        for (Object j : jsonLop) {
+            JSONObject cur = (JSONObject) j;
+            String path = cur.getString("path");
+            int rating = cur.getInt("rating");
+            Boolean toDelete = cur.getBoolean("toDelete");
+            Photo p = new Photo(path);
+            if (toDelete) {
+                p.setToDelete();
+            }
+            p.setRating(rating);
+            res.addPhoto(p);
+        }
 
         return res;
     }
 
     public PhotoManager read() throws IOException {
+        return parse(readFile());
     }
 
 }

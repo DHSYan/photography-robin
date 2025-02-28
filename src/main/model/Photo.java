@@ -1,6 +1,8 @@
 
 package model;
 
+import org.json.JSONObject;
+
 public class Photo {
     private static final int DEFAULT_RATING = -1;
 
@@ -54,6 +56,15 @@ public class Photo {
     // EFFECTS: returns the path of the photo
     public String getPath() {
         return path;
+    }
+
+    // EFFECTS: returns the Json equivalent of Photo
+    public JSONObject toJson() {
+        JSONObject res = new JSONObject();
+        res.put("path", path);
+        res.put("rating", rating);
+        res.put("toDelete", toDelete);
+        return res;
     }
 
 }

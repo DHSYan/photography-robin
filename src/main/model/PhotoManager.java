@@ -2,6 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import persistence.JsonReader;
+
 // Photomanager managens Photos, giving ratings, 
 // tagging each photo with specific information etc.
 public class PhotoManager {
@@ -77,4 +82,20 @@ public class PhotoManager {
         return result;
     }
     
+    // The below was referenced from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.javaj
+    public JSONObject toJson() {
+        JSONObject res = new JSONObject();
+        res.put("lop", lopToJson());
+        return res;
+    }
+
+    private JSONArray lopToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Photo p : lop) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
+    }
 }

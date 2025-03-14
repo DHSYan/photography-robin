@@ -8,6 +8,8 @@ import java.io.PrintWriter;
 
 import org.json.JSONObject;
 
+// JSONWriter represents a JSON file creation, that writes and saves the 
+// current state of PhotoManager
 public class JsonWriter {
     private static final int TAB = 4;
 

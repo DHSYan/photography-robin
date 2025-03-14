@@ -11,6 +11,8 @@ import model.PhotoManager;
 
 import org.json.*;
 
+// JSONReader represents the bridge between PhotoManagerApp and previously 
+// saved user data.
 public class JsonReader {
     private String path;
 

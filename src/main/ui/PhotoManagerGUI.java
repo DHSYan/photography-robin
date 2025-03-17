@@ -27,7 +27,7 @@ public class PhotoManagerGUI extends JFrame {
 
         pm = new PhotoManager();
 
-        menu = new MainMenuPanel();
+        menu = new MainMenuPanel(pm);
         add(menu);
         
         setSize(new Dimension(1000,1000));

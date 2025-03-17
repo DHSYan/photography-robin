@@ -16,16 +16,16 @@ import model.Photo;
 // PhotoManagerGUI represents the main window frame where the PhotoManager 
 // is displayed
 public class PhotoManagerGUI extends JFrame {
-    private MenuPanel menu;
+    private MainMenuPanel menu;
 
     public PhotoManagerGUI() {
         // JFrame frame = new JFrame();
         super("Photo Manager");
 
-        menu = new MenuPanel();
         add(menu);
 
         pack();
+        menu = new MainMenuPanel();
         
         setSize(new Dimension(1000,1000));
         setVisible(true);

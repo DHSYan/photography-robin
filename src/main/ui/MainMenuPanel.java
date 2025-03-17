@@ -7,7 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MenuPanel extends JPanel {
+// Represents the panel in which the Main Menu is displayed
+public class MainMenuPanel extends JPanel {
 
     private JLabel introLbl;
 
@@ -16,7 +17,7 @@ public class MenuPanel extends JPanel {
     private JButton saveBtn;
     private JButton loadBtn;
 
-    public MenuPanel() {
+    public MainMenuPanel() {
         setBackground(Color.GRAY);
         setPreferredSize(new Dimension(200, 200));
         introLbl = new JLabel("Welcome to PhotoManager!");

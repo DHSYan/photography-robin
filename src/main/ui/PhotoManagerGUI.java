@@ -6,6 +6,15 @@ import javax.swing.*;
 
 import model.Photo;
 
+// Structure of Code and Inspiration came from the following: 
+// - https://github.students.cs.ubc.ca/CPSC210/C3-LectureLabStarter
+// - https://github.students.cs.ubc.ca/CPSC210/B02-SpaceInvadersBase
+// - https://www.geeksforgeeks.org/introduction-to-java-swing/
+// - https://www.cs.cmu.edu/~pattis/15-1XX/15-200/lectures/view/lecture.html
+// - https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html
+
+// PhotoManagerGUI represents the main window frame where the PhotoManager 
+// is displayed
 public class PhotoManagerGUI extends JFrame {
     private MenuPanel menu;
 

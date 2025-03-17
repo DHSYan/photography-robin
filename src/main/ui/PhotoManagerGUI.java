@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import javax.swing.*;
 
 import model.Photo;
+import model.PhotoManager;
 
 // Structure of Code and Inspiration came from the following: 
 // - https://github.students.cs.ubc.ca/CPSC210/C3-LectureLabStarter
@@ -16,16 +17,18 @@ import model.Photo;
 // PhotoManagerGUI represents the main window frame where the PhotoManager 
 // is displayed
 public class PhotoManagerGUI extends JFrame {
+    private PhotoManager pm;
     private MainMenuPanel menu;
 
     public PhotoManagerGUI() {
         // JFrame frame = new JFrame();
         super("Photo Manager");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        add(menu);
+        pm = new PhotoManager();
 
-        pack();
         menu = new MainMenuPanel();
+        add(menu);
         
         setSize(new Dimension(1000,1000));
         setVisible(true);

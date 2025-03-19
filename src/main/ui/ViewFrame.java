@@ -26,7 +26,8 @@ import model.PhotoManager;
 // - https://github.students.cs.ubc.ca/CPSC210/C3-LectureLabStarter/
 // - For learning how to scaling an image down 
 //    - https://stackoverflow.com/questions/16343098/resize-a-picture-to-fit-a-jlabel
-
+// - https://www.youtube.com/watch?v=Nx4YC5_HFsk
+// - https://docs.oracle.com/javase/tutorial/2d/images/drawimage.html 
 public class ViewFrame extends JFrame {
     private final double imageDownScaler = 0.1;
 

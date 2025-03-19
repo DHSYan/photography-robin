@@ -24,6 +24,9 @@ import model.PhotoManager;
 
 // Reference:
 // - https://github.students.cs.ubc.ca/CPSC210/C3-LectureLabStarter/
+// - For learning how to scaling an image down 
+//    - https://stackoverflow.com/questions/16343098/resize-a-picture-to-fit-a-jlabel
+
 public class ViewFrame extends JFrame {
     private final double imageDownScaler = 0.1;
 
@@ -31,7 +34,6 @@ public class ViewFrame extends JFrame {
     
     private PhotoManager pm;
     private Photo curPhoto;
-    private ImageIcon curImageIcon;
     private JLabel curImageLabel;
     private int curIndex = 0;
     
@@ -58,15 +60,25 @@ public class ViewFrame extends JFrame {
 
         add(nextButton, BorderLayout.NORTH);
 
-
-        setSize(new Dimension(1000,1000));
         pack();
         setVisible(true);
     }
 
+
     private void firstPhoto() {
         curPhoto = pm.getPhotos().getFirst();
 
+        pane = new JPanel();
+        pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
+        pane.add(Box.createVerticalStrut(15));
+
+        curImageLabel = new JLabel(fetchPhoto(), SwingConstants.CENTER);
+
+        pane.add(curImageLabel);
+        add(pane);
+    }
+
+    private ImageIcon fetchPhoto() { 
         BufferedImage img = null;
         try {
             img = ImageIO.read(new File(curPhoto.getPath()));
@@ -79,29 +91,14 @@ public class ViewFrame extends JFrame {
                 (int) (img.getHeight() * imageDownScaler),
                 Image.SCALE_SMOOTH);
 
-        pane = new JPanel();
-        pane.setSize(new Dimension(500, 500));
-        pane.setMaximumSize(new Dimension(1000,1000));
-        pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
-        pane.add(Box.createVerticalStrut(15));
-        curImageIcon = new ImageIcon(scaledImg);
-        curImageLabel = new JLabel(curImageIcon, SwingConstants.CENTER);
-        curImageLabel.setSize((int) (curImageIcon.getIconWidth() * imageDownScaler),
-                (int) (curImageIcon.getIconHeight() * imageDownScaler));
-        pane.add(curImageLabel);
-        curImageLabel.setMaximumSize(new Dimension(1000, 1000));        
-        add(pane);
+        return new ImageIcon(scaledImg);
     }
 
     private void nextPhoto() { 
         pane.remove(curImageLabel);
         curIndex = (curIndex + 1) % pm.getPhotos().size();
         curPhoto = pm.getPhotos().get(curIndex);
-        curImageIcon = new ImageIcon(curPhoto.getPath());
-        curImageLabel = new JLabel(curImageIcon, SwingConstants.CENTER);
-        curImageLabel.setSize((int) (curImageIcon.getIconWidth() * imageDownScaler),
-                (int) (curImageIcon.getIconHeight() * imageDownScaler));
-        curImageLabel.setMaximumSize(new Dimension(1000, 1000));        
+        curImageLabel = new JLabel(fetchPhoto(), SwingConstants.CENTER);
     }
 
     private void drawPhoto() {

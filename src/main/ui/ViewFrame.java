@@ -3,7 +3,11 @@ package ui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -12,13 +16,16 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.JFrame;
 
 import model.Photo;
 import model.PhotoManager;
 
+// Reference:
+// - https://github.students.cs.ubc.ca/CPSC210/C3-LectureLabStarter/
 public class ViewFrame extends JFrame {
-    private final double imageDownScaler = 0.15;
+    private final double imageDownScaler = 0.1;
 
     private JPanel pane;
     
@@ -59,15 +66,30 @@ public class ViewFrame extends JFrame {
 
     private void firstPhoto() {
         curPhoto = pm.getPhotos().getFirst();
-        curIndex = 1;
+
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File(curPhoto.getPath()));
+        } catch (IOException e) {
+            // pass
+        }
+
+        Image scaledImg = img.getScaledInstance(
+                (int) (img.getWidth() * imageDownScaler),
+                (int) (img.getHeight() * imageDownScaler),
+                Image.SCALE_SMOOTH);
+
         pane = new JPanel();
+        pane.setSize(new Dimension(500, 500));
+        pane.setMaximumSize(new Dimension(1000,1000));
         pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
         pane.add(Box.createVerticalStrut(15));
-        curImageIcon = new ImageIcon(curPhoto.getPath());
-        curImageLabel = new JLabel(curImageIcon);
+        curImageIcon = new ImageIcon(scaledImg);
+        curImageLabel = new JLabel(curImageIcon, SwingConstants.CENTER);
         curImageLabel.setSize((int) (curImageIcon.getIconWidth() * imageDownScaler),
                 (int) (curImageIcon.getIconHeight() * imageDownScaler));
         pane.add(curImageLabel);
+        curImageLabel.setMaximumSize(new Dimension(1000, 1000));        
         add(pane);
     }
 
@@ -76,9 +98,10 @@ public class ViewFrame extends JFrame {
         curIndex = (curIndex + 1) % pm.getPhotos().size();
         curPhoto = pm.getPhotos().get(curIndex);
         curImageIcon = new ImageIcon(curPhoto.getPath());
-        curImageLabel = new JLabel(curImageIcon);
+        curImageLabel = new JLabel(curImageIcon, SwingConstants.CENTER);
         curImageLabel.setSize((int) (curImageIcon.getIconWidth() * imageDownScaler),
                 (int) (curImageIcon.getIconHeight() * imageDownScaler));
+        curImageLabel.setMaximumSize(new Dimension(1000, 1000));        
     }
 
     private void drawPhoto() {

@@ -11,6 +11,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JFrame;
 
 import model.PhotoManager;
 import model.Photo;
@@ -25,11 +26,11 @@ public class ViewPanel extends JPanel {
 
     private Photo curPhoto;
     private JPanel curPane;
+    private JFrame curFrame;
     private int currentIndex;
 
     public ViewPanel(PhotoManager pm) {
         setBackground(Color.GRAY);
-
         setPreferredSize(new Dimension(1000, 1000));
 
         currentIndex = 0;
@@ -37,21 +38,26 @@ public class ViewPanel extends JPanel {
         curPhoto = listOfPhotos.get(currentIndex);
 
 
+        curFrame = new JFrame();
         nextBtn = new JButton("Next");
         
         nextBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                remove(curPane);
+                curFrame.setVisible(false);
+                curFrame.remove(curPane);
                 currentIndex = (currentIndex + 1) % listOfPhotos.size();
                 curPhoto = listOfPhotos.get(currentIndex);
                 curPane = renderImage(curPhoto);
-                add(curPane);
+                curFrame.add(curPane);
+                curFrame.setVisible(true);
+                
             }
         });
 
         add(nextBtn);
         curPane = renderImage(curPhoto);
-        add(curPane);
+        curFrame.add(curPane);
+        curFrame.setVisible(true);
     }
 
     private JPanel renderImage(Photo p) { 

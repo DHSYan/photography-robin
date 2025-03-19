@@ -25,7 +25,7 @@ public class ViewFrame extends JFrame {
 
         add(vp);
 
-        setSize(new Dimension(500,500));
+        setSize(new Dimension(1000,1000));
         setVisible(true);
     }
 

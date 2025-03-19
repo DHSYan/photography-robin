@@ -21,7 +21,6 @@ public class PhotoManagerGUI extends JFrame {
     private MainMenuPanel menu;
 
     public PhotoManagerGUI() {
-        // JFrame frame = new JFrame();
         super("Photo Manager");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

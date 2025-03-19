@@ -20,15 +20,21 @@ public class ViewPanel extends JPanel {
 
     public ViewPanel(PhotoManager pm) {
         setBackground(Color.GRAY);
-        setPreferredSize(new Dimension(200, 200));
+        // setPreferredSize(new Dimension(200, 200));
     }
 
+    // Reference: 
+    // - https://www.youtube.com/watch?v=Nx4YC5_HFsk
+    // - https://docs.oracle.com/javase/tutorial/2d/images/drawimage.html 
     @Override
     protected void paintComponent(Graphics g) { 
         super.paintComponent(g);
         curPhotoFile = new ImageIcon("./photos/IMG_1672.JPG");
 
-        g.drawImage(curPhotoFile.getImage(), 100, 100, null);
+        g.drawImage(curPhotoFile.getImage(), 0, 0,
+                (int) (curPhotoFile.getIconWidth() * 0.15),
+                (int) (curPhotoFile.getIconHeight() * 0.15),
+                null);
 
     }
 }

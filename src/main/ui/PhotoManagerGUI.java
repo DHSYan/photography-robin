@@ -30,6 +30,7 @@ public class PhotoManagerGUI extends JFrame {
         add(menu);
         
         setSize(new Dimension(1000,1000));
+        pack();
         setVisible(true);
     }
 

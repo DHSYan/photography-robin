@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import model.PhotoManager;
 
 public class ViewPanel extends JPanel {
+    private final double imageDownScaler = 0.15;
+
+
     private JButton nextBtn;
     private JButton tagDelBtn;
     private JMenuItem ratingSelectMenu;
@@ -32,8 +35,8 @@ public class ViewPanel extends JPanel {
         curPhotoFile = new ImageIcon("./photos/IMG_1672.JPG");
 
         g.drawImage(curPhotoFile.getImage(), 0, 0,
-                (int) (curPhotoFile.getIconWidth() * 0.15),
-                (int) (curPhotoFile.getIconHeight() * 0.15),
+                (int) (curPhotoFile.getIconWidth() * imageDownScaler),
+                (int) (curPhotoFile.getIconHeight() * imageDownScaler),
                 null);
 
     }

@@ -48,7 +48,10 @@ public class ViewFrame extends JFrame {
         // vp = new ViewPanel(pm);
         // add(vp);
 
-        firstPhoto();
+        pane = new JPanel();
+        pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
+        pane.add(Box.createVerticalStrut(15));
+        nextPhoto();
 
         JButton nextButton = new JButton("Next");
         nextButton.addActionListener(new ActionListener() {
@@ -59,26 +62,27 @@ public class ViewFrame extends JFrame {
         });
 
         add(nextButton, BorderLayout.NORTH);
+        add(pane);
 
         pack();
         setVisible(true);
     }
 
 
-    private void firstPhoto() {
-        curPhoto = pm.getPhotos().getFirst();
-
-        pane = new JPanel();
-        pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
-        pane.add(Box.createVerticalStrut(15));
+    private void nextPhoto() {
+        if (curImageLabel != null) {
+            pane.remove(curImageLabel);
+        }
 
         curImageLabel = new JLabel(fetchPhoto(), SwingConstants.CENTER);
 
         pane.add(curImageLabel);
-        add(pane);
     }
 
     private ImageIcon fetchPhoto() { 
+        curPhoto = pm.getPhotos().get(curIndex);
+        curIndex = (curIndex + 1) % pm.getPhotos().size();
+
         BufferedImage img = null;
         try {
             img = ImageIO.read(new File(curPhoto.getPath()));
@@ -92,13 +96,6 @@ public class ViewFrame extends JFrame {
                 Image.SCALE_SMOOTH);
 
         return new ImageIcon(scaledImg);
-    }
-
-    private void nextPhoto() { 
-        pane.remove(curImageLabel);
-        curIndex = (curIndex + 1) % pm.getPhotos().size();
-        curPhoto = pm.getPhotos().get(curIndex);
-        curImageLabel = new JLabel(fetchPhoto(), SwingConstants.CENTER);
     }
 
     private void drawPhoto() {

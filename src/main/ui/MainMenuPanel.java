@@ -14,6 +14,11 @@ import javax.swing.JPanel;
 import model.Photo;
 import model.PhotoManager;
 
+// Reference: 
+// - https://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
+// - https://docs.oracle.com/javase/tutorial/uiswing/examples/components/FileChooserDemoProject/src/components/FileChooserDemo.java
+
+
 // Represents the panel in which the Main Menu is displayed
 public class MainMenuPanel extends JPanel {
 
@@ -21,9 +26,11 @@ public class MainMenuPanel extends JPanel {
 
     private JButton addBtn;
     private JButton delBtn;
+    private JButton viewBtn;
     private JButton saveBtn;
     private JButton loadBtn;
 
+    @SuppressWarnings("methodlength")
     public MainMenuPanel(PhotoManager pm) {
         JFileChooser fc = new JFileChooser();
 
@@ -43,11 +50,20 @@ public class MainMenuPanel extends JPanel {
 
 
         delBtn = new JButton("Show To Delete Photos");
+        viewBtn = new JButton("View Photos");
+
+        viewBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ViewFrame(pm);
+            }
+        });
+
         saveBtn = new JButton("Save Data");
         loadBtn = new JButton("Load Data");
 
         add(introLbl);
         add(addBtn);
+        add(viewBtn);
         add(delBtn);
         add(saveBtn);
         add(loadBtn);

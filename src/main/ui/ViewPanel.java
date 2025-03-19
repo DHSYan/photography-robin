@@ -1,6 +1,9 @@
 package ui;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -10,6 +13,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import model.PhotoManager;
+import model.Photo;
 
 public class ViewPanel extends JPanel {
     private final double imageDownScaler = 0.15;
@@ -20,10 +24,28 @@ public class ViewPanel extends JPanel {
     private JMenuItem ratingSelectMenu;
 
     private ImageIcon curPhotoFile;
+    private String curImagePath;
+    private Photo curPhoto;
+    private int currentIndex;
 
     public ViewPanel(PhotoManager pm) {
         setBackground(Color.GRAY);
-        // setPreferredSize(new Dimension(200, 200));
+
+        setPreferredSize(new Dimension(1000, 1000));
+
+        currentIndex = 0;
+
+        ArrayList<Photo> listOfPhotos = pm.getPhotos();
+
+        nextBtn = new JButton("Next");
+        nextBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                curPhoto = listOfPhotos.get(currentIndex);
+                currentIndex++;
+            }
+        });
+
+        add(nextBtn);
     }
 
     // Reference: 
@@ -32,7 +54,7 @@ public class ViewPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) { 
         super.paintComponent(g);
-        curPhotoFile = new ImageIcon("./photos/IMG_1672.JPG");
+        curPhotoFile = new ImageIcon(curPhoto.getPath());
 
         g.drawImage(curPhotoFile.getImage(), 0, 0,
                 (int) (curPhotoFile.getIconWidth() * imageDownScaler),

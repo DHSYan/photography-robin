@@ -16,16 +16,15 @@ import model.PhotoManager;
 import model.Photo;
 
 public class ViewPanel extends JPanel {
-    private final double imageDownScaler = 0.15;
+    private final double imageDownScaler = 50;
 
 
     private JButton nextBtn;
     private JButton tagDelBtn;
     private JMenuItem ratingSelectMenu;
 
-    private ImageIcon curPhotoFile;
-    private String curImagePath;
     private Photo curPhoto;
+    private JPanel curPane;
     private int currentIndex;
 
     public ViewPanel(PhotoManager pm) {
@@ -34,32 +33,45 @@ public class ViewPanel extends JPanel {
         setPreferredSize(new Dimension(1000, 1000));
 
         currentIndex = 0;
-
         ArrayList<Photo> listOfPhotos = pm.getPhotos();
+        curPhoto = listOfPhotos.get(currentIndex);
+
 
         nextBtn = new JButton("Next");
+        
         nextBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                remove(curPane);
+                currentIndex = (currentIndex + 1) % listOfPhotos.size();
                 curPhoto = listOfPhotos.get(currentIndex);
-                currentIndex++;
+                curPane = renderImage(curPhoto);
+                add(curPane);
             }
         });
 
         add(nextBtn);
+        curPane = renderImage(curPhoto);
+        add(curPane);
     }
 
-    // Reference: 
-    // - https://www.youtube.com/watch?v=Nx4YC5_HFsk
-    // - https://docs.oracle.com/javase/tutorial/2d/images/drawimage.html 
-    @Override
-    protected void paintComponent(Graphics g) { 
-        super.paintComponent(g);
-        curPhotoFile = new ImageIcon(curPhoto.getPath());
+    private JPanel renderImage(Photo p) { 
+        
+        JPanel pane = new JPanel() {
+            // Reference: 
+            // - https://www.youtube.com/watch?v=Nx4YC5_HFsk
+            // - https://docs.oracle.com/javase/tutorial/2d/images/drawimage.html 
+            @Override
+            protected void paintComponent(Graphics g) { 
+                super.paintComponent(g);
+                ImageIcon curPhotoFile = new ImageIcon(p.getPath());
 
-        g.drawImage(curPhotoFile.getImage(), 0, 0,
-                (int) (curPhotoFile.getIconWidth() * imageDownScaler),
-                (int) (curPhotoFile.getIconHeight() * imageDownScaler),
-                null);
+                g.drawImage(curPhotoFile.getImage(), 0, 0,
+                        (int) (curPhotoFile.getIconWidth() * imageDownScaler),
+                        (int) (curPhotoFile.getIconHeight() * imageDownScaler),
+                        null);
 
+            }
+        };
+        return pane;
     }
 }

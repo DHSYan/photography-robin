@@ -4,7 +4,6 @@ import java.awt.Dimension;
 
 import javax.swing.*;
 
-import model.Photo;
 import model.PhotoManager;
 
 // Structure of Code and Inspiration came from the following: 

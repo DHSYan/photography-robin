@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -15,7 +13,6 @@ import javax.swing.JPanel;
 
 import model.Photo;
 import model.PhotoManager;
-import persistence.JsonWriter;
 
 // Reference: 
 // - https://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
@@ -33,8 +30,6 @@ public class MainMenuPanel extends JPanel {
 
     private PhotoManager pm;
 
-    private Scanner input;
-
     @SuppressWarnings("methodlength")
     public MainMenuPanel(PhotoManager photoManager) {
         pm = photoManager;
@@ -49,7 +44,8 @@ public class MainMenuPanel extends JPanel {
 
         addBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { 
-                int returnVal = fc.showOpenDialog(MainMenuPanel.this);
+                // int returnVal = fc.showOpenDialog(MainMenuPanel.this);
+                fc.showOpenDialog(MainMenuPanel.this);
                 File seleceted = fc.getSelectedFile();
                 pm.addPhoto(new Photo(seleceted.getPath()));
             }

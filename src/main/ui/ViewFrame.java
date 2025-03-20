@@ -46,9 +46,6 @@ public class ViewFrame extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // vp = new ViewPanel(pm);
-        // add(vp);
-
         pane = new JPanel();
         pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
         pane.add(Box.createVerticalStrut(15));

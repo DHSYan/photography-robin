@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -13,12 +15,11 @@ import javax.swing.JPanel;
 
 import model.Photo;
 import model.PhotoManager;
+import persistence.JsonWriter;
 
 // Reference: 
 // - https://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
 // - https://docs.oracle.com/javase/tutorial/uiswing/examples/components/FileChooserDemoProject/src/components/FileChooserDemo.java
-
-
 // Represents the panel in which the Main Menu is displayed
 public class MainMenuPanel extends JPanel {
 
@@ -30,8 +31,14 @@ public class MainMenuPanel extends JPanel {
     private JButton saveBtn;
     private JButton loadBtn;
 
+    private PhotoManager pm;
+
+    private Scanner input;
+
     @SuppressWarnings("methodlength")
-    public MainMenuPanel(PhotoManager pm) {
+    public MainMenuPanel(PhotoManager photoManager) {
+        pm = photoManager;
+
         JFileChooser fc = new JFileChooser();
 
         setBackground(Color.GRAY);
@@ -59,6 +66,15 @@ public class MainMenuPanel extends JPanel {
         });
 
         saveBtn = new JButton("Save Data");
+
+        saveBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new SaveFrame(pm);
+            }
+        });
+
+
+        
         loadBtn = new JButton("Load Data");
 
         add(introLbl);
@@ -67,6 +83,24 @@ public class MainMenuPanel extends JPanel {
         add(delBtn);
         add(saveBtn);
         add(loadBtn);
+    }
+    
+    public boolean doSaveData() {
+        boolean status = false;
+
+        System.out.println("Enter the name of the file:");
+        String path = input.next();
+
+        JsonWriter writer = new JsonWriter(path);
+
+        try {
+            writer.write(pm);
+            status = true;
+        } catch (IOException e) {
+            System.out.println("Can't create a file, maybe you run out of disk space?");
+        }
+
+        return status;
     }
 
 }

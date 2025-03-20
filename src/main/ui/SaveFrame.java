@@ -3,14 +3,17 @@ package ui;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import model.PhotoManager;
+import persistence.JsonWriter;
 
 public class SaveFrame extends JFrame {
     private PhotoManager pm;
+    private String fileName;
 
     public SaveFrame(PhotoManager photoManager) {
         super("Save Program");
@@ -24,14 +27,28 @@ public class SaveFrame extends JFrame {
         
         fileNameField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String fileName = fileNameField.getText();
+                fileName = fileNameField.getText();
+                doSaveData();
             }
         });
 
         add(fileNameField);
 
-
         pack();
         setVisible(true);
+    }
+
+    public boolean doSaveData() {
+        boolean status = false;
+
+        JsonWriter writer = new JsonWriter("./data/" + fileName + ".json");
+        try {
+            writer.write(pm);
+            status = true;
+        } catch (IOException e) {
+            System.out.println("Can't create a file, maybe you run out of disk space?");
+        }
+
+        return status;
     }
 }

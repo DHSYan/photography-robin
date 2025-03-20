@@ -85,22 +85,5 @@ public class MainMenuPanel extends JPanel {
         add(loadBtn);
     }
     
-    public boolean doSaveData() {
-        boolean status = false;
-
-        System.out.println("Enter the name of the file:");
-        String path = input.next();
-
-        JsonWriter writer = new JsonWriter(path);
-
-        try {
-            writer.write(pm);
-            status = true;
-        } catch (IOException e) {
-            System.out.println("Can't create a file, maybe you run out of disk space?");
-        }
-
-        return status;
-    }
 
 }

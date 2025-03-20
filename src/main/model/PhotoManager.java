@@ -80,6 +80,10 @@ public class PhotoManager {
 
         return result;
     }
+
+    public void override(PhotoManager pm) {
+        lop = pm.getPhotos();
+    }
     
     // The below was referenced from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.javaj
     // EFFECTS: returns an JSONObject of PhotoManager
@@ -99,5 +103,7 @@ public class PhotoManager {
 
         return jsonArray;
     }
+
+    
 
 }

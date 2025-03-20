@@ -72,6 +72,12 @@ public class MainMenuPanel extends JPanel {
 
         
         loadBtn = new JButton("Load Data");
+        
+        loadBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new LoadFrame(pm);
+            }
+        });
 
         add(introLbl);
         add(addBtn);

@@ -40,6 +40,7 @@ public class ViewFrame extends JFrame {
     private int curIndex = 0;
 
     private String[] ratings = { "1", "2", "3", "4", "5" };
+    private String[] deleteChoice = { "No", "Yes" };
     
     @SuppressWarnings("methodlength")
     public ViewFrame(PhotoManager photoManager) {
@@ -62,7 +63,33 @@ public class ViewFrame extends JFrame {
             }
         });
 
-        
+
+        add(ratingComboBox(), BorderLayout.SOUTH);
+        add(toDeleteComboBox(), BorderLayout.WEST);
+        add(nextButton, BorderLayout.NORTH);
+        add(pane);
+
+        pack();
+        setVisible(true);
+    }
+
+    private JComboBox<String> toDeleteComboBox() {
+        JComboBox<String> toDeleteComboBox = new JComboBox<String>(deleteChoice);
+        toDeleteComboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String isToDelete = (String) toDeleteComboBox.getSelectedItem();
+                
+                if (isToDelete.equals("Yes")) {
+                    pm.getPhotos().get(curIndex).setToDelete(true);
+                } else {
+                    pm.getPhotos().get(curIndex).setToDelete(false);
+                }
+            }
+        });
+        return toDeleteComboBox;
+    }
+
+    private JComboBox<String> ratingComboBox() {
         JComboBox<String> ratingComboBox = new JComboBox<String>(ratings);
         ratingComboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -71,13 +98,7 @@ public class ViewFrame extends JFrame {
                 pm.getPhotos().get(curIndex).setRating(rating);
             }
         });
-
-        add(ratingComboBox, BorderLayout.SOUTH);
-        add(nextButton, BorderLayout.NORTH);
-        add(pane);
-
-        pack();
-        setVisible(true);
+        return ratingComboBox;
     }
 
     private void nextPhoto() {

@@ -44,7 +44,7 @@ from a file.
 # Instructions for End User
 
 ## How to add Photos
-1. Press Add Photos. 
+1. Press "Add Photo".
 2. Select File 
 3. Press Open
 
@@ -55,6 +55,10 @@ from a file.
 ## How to Tag a Photo as Delete
 1. Press "View Photos" 
 2. On the left hand side, select "Yes" if you want this photo to be deleted.
+
+## How to view the "To be Deleted" Photos
+1. Press "Show To Delete Photos" 
+2. Press "Next" to cycle through all the to be deleted photos.
 
 ## How to give a Photo Rating 
 1. Press "View Photos" 
@@ -67,7 +71,6 @@ from a file.
 ## How to Load a previous state of the Program
 1. On the main menu press "Load Data" 
 2. Enter the name of the state.
-
 
 
 

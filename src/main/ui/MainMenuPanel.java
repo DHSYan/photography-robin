@@ -11,8 +11,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import org.junit.internal.runners.JUnit38ClassRunner;
-
 import model.Photo;
 import model.PhotoManager;
 

@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import model.PhotoManager;
 import persistence.JsonReader;
 
+// Reference
+// - https://docs.oracle.com/javase/tutorial/uiswing/components/textfield.html
 public class LoadFrame extends JFrame {
     private PhotoManager pm;
     private String fileName;

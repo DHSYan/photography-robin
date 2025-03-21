@@ -68,8 +68,6 @@ public class MainMenuPanel extends JPanel {
                 new SaveFrame(pm);
             }
         });
-
-
         
         loadBtn = new JButton("Load Data");
         

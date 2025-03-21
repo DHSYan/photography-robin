@@ -12,6 +12,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 // import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 // import javax.swing.JMenuItem;
@@ -37,8 +38,10 @@ public class ViewFrame extends JFrame {
     private Photo curPhoto;
     private JLabel curImageLabel;
     private int curIndex = 0;
-    
 
+    private String[] ratings = { "1", "2", "3", "4", "5" };
+    
+    @SuppressWarnings("methodlength")
     public ViewFrame(PhotoManager photoManager) {
         super("Viewing Photos");
 
@@ -48,7 +51,7 @@ public class ViewFrame extends JFrame {
 
         pane = new JPanel();
         pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
-        pane.add(Box.createVerticalStrut(15));
+        pane.add(Box.createVerticalStrut(15)); 
         nextPhoto();
 
         JButton nextButton = new JButton("Next");
@@ -59,13 +62,23 @@ public class ViewFrame extends JFrame {
             }
         });
 
+        
+        JComboBox<String> ratingComboBox = new JComboBox<String>(ratings);
+        ratingComboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String ratingChoice = (String) ratingComboBox.getSelectedItem();
+                int rating = ratingChoice.charAt(0) - '0';
+                pm.getPhotos().get(curIndex).setRating(rating);
+            }
+        });
+
+        add(ratingComboBox, BorderLayout.SOUTH);
         add(nextButton, BorderLayout.NORTH);
         add(pane);
 
         pack();
         setVisible(true);
     }
-
 
     private void nextPhoto() {
         if (curImageLabel != null) {

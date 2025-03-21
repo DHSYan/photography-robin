@@ -11,6 +11,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.junit.internal.runners.JUnit38ClassRunner;
+
 import model.Photo;
 import model.PhotoManager;
 
@@ -20,31 +22,31 @@ import model.PhotoManager;
 
 // Represents the panel in which the Main Menu is displayed
 public class MainMenuPanel extends JPanel {
-
     private JLabel introLbl;
-
-    private JButton addBtn;
-    private JButton delBtn;
-    private JButton viewBtn;
-    private JButton saveBtn;
-    private JButton loadBtn;
-
     private PhotoManager pm;
+    JFileChooser fc;
 
     // MODIFIES: this
     // EFFECTS: constructs a JPanel that contains all the main menu items
-    @SuppressWarnings("methodlength")
     public MainMenuPanel(PhotoManager photoManager) {
         pm = photoManager;
-
-        JFileChooser fc = new JFileChooser();
+        fc = new JFileChooser();
 
         setBackground(Color.GRAY);
         setPreferredSize(new Dimension(200, 200));
         introLbl = new JLabel("Welcome to PhotoManager!");
 
-        addBtn = new JButton("Add Photos");
-
+        add(introLbl);
+        add(addBtn());
+        add(viewBtn());
+        add(delBtn());
+        add(saveBtn());
+        add(loadBtn());
+    }
+    
+    // EFFECTS: creates and return a JButton for adding photos
+    private JButton addBtn() {
+        JButton addBtn = new JButton("Add Photos");
         addBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { 
                 // int returnVal = fc.showOpenDialog(MainMenuPanel.this);
@@ -54,45 +56,54 @@ public class MainMenuPanel extends JPanel {
                 pm.addPhoto(new Photo(seleceted.getPath()));
             }
         });
+        return addBtn;
+    }
 
+    // EFFECTS: creates and return a JButton for viewing Photos
+    private JButton viewBtn() {
+        JButton viewBtn = new JButton("View Photos");
+        viewBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ViewFrame(pm);
+            }
+        });
+        return viewBtn;
+    }
 
-        delBtn = new JButton("Show To Delete Photos");
+    // EFFECTS: creates and return a JButton for viewing To-be-deleted photos
+    private JButton delBtn() {
+        JButton delBtn = new JButton("Show To Delete Photos");
         delBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new ViewDeleteFrame(pm);
             }
         });
 
-        viewBtn = new JButton("View Photos");
-        viewBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new ViewFrame(pm);
-            }
-        });
+        return delBtn;
+    }
 
-        saveBtn = new JButton("Save Data");
-
+    // EFFECTS: creates and return a JButton for saving the state of the program
+    private JButton saveBtn() {
+        JButton saveBtn = new JButton("Save Data");
         saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new SaveFrame(pm);
             }
         });
         
-        loadBtn = new JButton("Load Data");
-        
+        return saveBtn;
+    }
+
+    // EFFECTS: creates and return a JButton for loading an existing state of the program
+    private JButton loadBtn() {
+        JButton loadBtn = new JButton("Load Data");
         loadBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new LoadFrame(pm);
             }
         });
 
-        add(introLbl);
-        add(addBtn);
-        add(viewBtn);
-        add(delBtn);
-        add(saveBtn);
-        add(loadBtn);
+        return loadBtn;
     }
-    
 
 }

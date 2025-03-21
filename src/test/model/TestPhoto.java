@@ -79,6 +79,31 @@ public class TestPhoto {
     }
 
     @Test
+    public void testSetToDeleteWithParam() {
+        assertFalse(p1.getToDelete());
+        assertFalse(p2.getToDelete());
+        assertFalse(p3.getToDelete());
+
+        p1.setToDelete(false);
+
+        assertFalse(p1.getToDelete());
+        assertFalse(p2.getToDelete());
+        assertFalse(p3.getToDelete());
+
+        p1.setToDelete(true);
+
+        assertTrue(p1.getToDelete());
+        assertFalse(p2.getToDelete());
+        assertFalse(p3.getToDelete());
+
+        p2.setToDelete(true);
+        
+        assertTrue(p1.getToDelete());
+        assertTrue(p2.getToDelete());
+        assertFalse(p3.getToDelete());
+    }
+
+    @Test
     public void testSetPath() {
         assertEquals("", p4.getPath());
         p4.setPath("/home/tzen/cpsc210/ProjectStarter/photos/IMG_2221.JPG");

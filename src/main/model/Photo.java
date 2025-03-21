@@ -37,6 +37,10 @@ public class Photo {
         this.toDelete = true;
     }
 
+    public void setToDelete(boolean isToDelete) {
+        this.toDelete = isToDelete;
+    }
+
     // MODIFIES: this
     // EFFECTS: sets the path of the photo
     public void setPath(String path) {

@@ -87,10 +87,8 @@ public class ViewFrame extends JFrame {
                 String isToDelete = (String) toDeleteComboBox.getSelectedItem();
                 
                 if (isToDelete.equals("Yes")) {
-                    // pm.getPhotos().get(curIndex).setToDelete(true);
                     curPhoto.setToDelete(true);
                 } else {
-                    // pm.getPhotos().get(curIndex).setToDelete(false);
                     curPhoto.setToDelete(false);
                 }
             }
@@ -106,7 +104,7 @@ public class ViewFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String ratingChoice = (String) ratingComboBox.getSelectedItem();
                 int rating = ratingChoice.charAt(0) - '0';
-                pm.getPhotos().get(curIndex).setRating(rating);
+                curPhoto.setRating(rating);
             }
         });
         return ratingComboBox;

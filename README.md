@@ -40,3 +40,34 @@ This project seeks to smooth out this process down to ***one*** keystroke.
 
 > As a user, I want to have the option to load my photo's metadata 
 from a file.
+
+# Instructions for End User
+
+## How to add Photos
+1. Press Add Photos. 
+2. Select File 
+3. Press Open
+
+## How to View All the Photos 
+1. Press "View Photos"
+2. Press next as you are ready to look at the next photo.
+
+## How to Tag a Photo as Delete
+1. Press "View Photos" 
+2. On the left hand side, select "Yes" if you want this photo to be deleted.
+
+## How to give a Photo Rating 
+1. Press "View Photos" 
+2. On the buttom, select the rating in the Combo Box.
+
+## How to Save the state of the Program
+1. On the main menu press "Save Data" 
+2. On the popup box, enter a name you will remember later.
+
+## How to Load a previous state of the Program
+1. On the main menu press "Load Data" 
+2. Enter the name of the state.
+
+
+
+

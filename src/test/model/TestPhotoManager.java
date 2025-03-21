@@ -157,4 +157,10 @@ public class TestPhotoManager {
 
         assertTrue(pm2.filterToBeDeleted().equals(target3));
     }
+
+    @Test
+    void testOverride() {
+        pm1.override(pm2);       
+        assertEquals(pm1.getPhotos(), pm2.getPhotos());
+    }
 }

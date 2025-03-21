@@ -13,10 +13,15 @@ import persistence.JsonWriter;
 
 // Reference
 // - https://docs.oracle.com/javase/tutorial/uiswing/components/textfield.html
+
+// SaveFrame Represents the window where it prompts user to save the current
+// state of the program
 public class SaveFrame extends JFrame {
     private PhotoManager pm;
     private String fileName;
 
+    // MODIFIES: this
+    // EFFECTS: constructs the window 
     public SaveFrame(PhotoManager photoManager) {
         super("Save Program");
         
@@ -40,6 +45,8 @@ public class SaveFrame extends JFrame {
         setVisible(true);
     }
 
+    // EFFECTS: Writes the current state of the program to a  JSON file to the ./data/ directory, 
+    //          returns true is the writing is successful, false otherwise
     public boolean doSaveData() {
         boolean status = false;
 

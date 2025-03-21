@@ -25,6 +25,9 @@ import model.PhotoManager;
 //    - https://stackoverflow.com/questions/16343098/resize-a-picture-to-fit-a-jlabel
 // - https://www.youtube.com/watch?v=Nx4YC5_HFsk
 // - https://docs.oracle.com/javase/tutorial/2d/images/drawimage.html 
+
+// ViewDeleteFrame represents the Frame that cycles through all the 
+// to be deleted photos.
 public class ViewDeleteFrame extends JFrame {
     private final double imageDownScaler = 0.1;
 
@@ -35,7 +38,8 @@ public class ViewDeleteFrame extends JFrame {
     private JLabel curImageLabel;
     private int curIndex = 0;
 
-    @SuppressWarnings("methodlength")
+    // MODIFIES: this
+    // EFFECTS: constructs the viewing frame that shows the to-be-deleted photos
     public ViewDeleteFrame(PhotoManager photoManager) {
         super("Viewing Photos");
 
@@ -63,6 +67,8 @@ public class ViewDeleteFrame extends JFrame {
         setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: places photo as JLabel on the main panel
     private void nextPhoto() {
         if (curImageLabel != null) {
             pane.remove(curImageLabel);
@@ -73,6 +79,8 @@ public class ViewDeleteFrame extends JFrame {
         pane.add(curImageLabel);
     }
 
+    // MODIFIES: this
+    // EFFECTS: Goes to the next photo in the cycle, and returns it as a ImageIcon
     private ImageIcon fetchPhoto() { 
         curPhotoPath = pm.filterToBeDeleted().get(curIndex);
         curIndex = (curIndex + 1) % pm.filterToBeDeleted().size();
@@ -92,6 +100,8 @@ public class ViewDeleteFrame extends JFrame {
         return new ImageIcon(scaledImg);
     }
 
+    // MODIFIES: this 
+    // EFFECTS: refreshes the main frame to update the current photo displayed
     private void drawPhoto() {
         pane.add(curImageLabel);
         validate();

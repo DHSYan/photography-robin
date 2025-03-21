@@ -17,6 +17,7 @@ import model.PhotoManager;
 // Reference: 
 // - https://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
 // - https://docs.oracle.com/javase/tutorial/uiswing/examples/components/FileChooserDemoProject/src/components/FileChooserDemo.java
+
 // Represents the panel in which the Main Menu is displayed
 public class MainMenuPanel extends JPanel {
 
@@ -30,6 +31,8 @@ public class MainMenuPanel extends JPanel {
 
     private PhotoManager pm;
 
+    // MODIFIES: this
+    // EFFECTS: constructs a JPanel that contains all the main menu items
     @SuppressWarnings("methodlength")
     public MainMenuPanel(PhotoManager photoManager) {
         pm = photoManager;

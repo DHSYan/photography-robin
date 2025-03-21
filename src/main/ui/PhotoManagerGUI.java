@@ -13,12 +13,13 @@ import model.PhotoManager;
 // - https://www.cs.cmu.edu/~pattis/15-1XX/15-200/lectures/view/lecture.html
 // - https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html
 
-// PhotoManagerGUI represents the main window frame where the PhotoManager 
-// is displayed
+// PhotoManagerGUI represents the main window frame where the PhotoManager is displayed
 public class PhotoManagerGUI extends JFrame {
     private PhotoManager pm;
     private MainMenuPanel menu;
 
+    // MODIFIES: this
+    // EFFECTS: Constructs the main frame where every part of the GUI is hosted.
     public PhotoManagerGUI() {
         super("Photo Manager");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,6 +35,7 @@ public class PhotoManagerGUI extends JFrame {
     }
 
 
+    // Run the GUI
     public static void main(String[] args) {
         new PhotoManagerGUI();
     }

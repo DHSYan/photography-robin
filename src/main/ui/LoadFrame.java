@@ -13,10 +13,15 @@ import persistence.JsonReader;
 
 // Reference
 // - https://docs.oracle.com/javase/tutorial/uiswing/components/textfield.html
+
+// Load Frame represents the Window that instructs user to load an
+// existing state of the program.
 public class LoadFrame extends JFrame {
     private PhotoManager pm;
     private String fileName;
 
+    // MODIFIES: this
+    // EFFECTS: Constructs a JFrame
     public LoadFrame(PhotoManager photoManager) {
         super("Loading Data");
 
@@ -41,6 +46,8 @@ public class LoadFrame extends JFrame {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads an Json file to the PhotoManager
     public boolean doLoadData() {
         boolean status = false;
         

@@ -29,6 +29,9 @@ import model.PhotoManager;
 //    - https://stackoverflow.com/questions/16343098/resize-a-picture-to-fit-a-jlabel
 // - https://www.youtube.com/watch?v=Nx4YC5_HFsk
 // - https://docs.oracle.com/javase/tutorial/2d/images/drawimage.html 
+
+// ViewFrame represents the Frame that cycles through all the photos that 
+// has been added to the photomanager
 public class ViewFrame extends JFrame {
     private final double imageDownScaler = 0.1;
 
@@ -42,7 +45,9 @@ public class ViewFrame extends JFrame {
     private String[] ratings = { "1", "2", "3", "4", "5" };
     private String[] deleteChoice = { "No", "Yes" };
     
-    @SuppressWarnings("methodlength")
+
+    // MODIFIES: this
+    // EFFECTS: constructs the viewing frame that shows all the photos
     public ViewFrame(PhotoManager photoManager) {
         super("Viewing Photos");
 
@@ -63,7 +68,6 @@ public class ViewFrame extends JFrame {
             }
         });
 
-
         add(ratingComboBox(), BorderLayout.SOUTH);
         add(toDeleteComboBox(), BorderLayout.WEST);
         add(nextButton, BorderLayout.NORTH);
@@ -73,6 +77,9 @@ public class ViewFrame extends JFrame {
         setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates and returns a ComboBox for tagging a photo 
+    // as "to-be-deleted"
     private JComboBox<String> toDeleteComboBox() {
         JComboBox<String> toDeleteComboBox = new JComboBox<String>(deleteChoice);
         toDeleteComboBox.addActionListener(new ActionListener() {
@@ -91,6 +98,8 @@ public class ViewFrame extends JFrame {
         return toDeleteComboBox;
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates and returns a ComboBox for giving a photo ratings
     private JComboBox<String> ratingComboBox() {
         JComboBox<String> ratingComboBox = new JComboBox<String>(ratings);
         ratingComboBox.addActionListener(new ActionListener() {
@@ -103,6 +112,8 @@ public class ViewFrame extends JFrame {
         return ratingComboBox;
     }
 
+    // MODIFIES: this
+    // EFFECTS: places photo as JLabel on the main panel
     private void nextPhoto() {
         if (curImageLabel != null) {
             pane.remove(curImageLabel);
@@ -113,6 +124,8 @@ public class ViewFrame extends JFrame {
         pane.add(curImageLabel);
     }
 
+    // MODIFIES: this
+    // EFFECTS: Goes to the next photo in the cycle, and returns it as a ImageIcon
     private ImageIcon fetchPhoto() { 
         curPhoto = pm.getPhotos().get(curIndex);
         curIndex = (curIndex + 1) % pm.getPhotos().size();
@@ -132,6 +145,8 @@ public class ViewFrame extends JFrame {
         return new ImageIcon(scaledImg);
     }
 
+    // MODIFIES: this 
+    // EFFECTS: refreshes the main frame to update the current photo displayed
     private void drawPhoto() {
         pane.add(curImageLabel);
         validate();

@@ -45,6 +45,7 @@ public class MainMenuPanel extends JPanel {
         addBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { 
                 // int returnVal = fc.showOpenDialog(MainMenuPanel.this);
+                // fc.changeToParentDirectory();
                 fc.showOpenDialog(MainMenuPanel.this);
                 File seleceted = fc.getSelectedFile();
                 pm.addPhoto(new Photo(seleceted.getPath()));
@@ -53,8 +54,13 @@ public class MainMenuPanel extends JPanel {
 
 
         delBtn = new JButton("Show To Delete Photos");
-        viewBtn = new JButton("View Photos");
+        delBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ViewDeleteFrame(pm);
+            }
+        });
 
+        viewBtn = new JButton("View Photos");
         viewBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new ViewFrame(pm);

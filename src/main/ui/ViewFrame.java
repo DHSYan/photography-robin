@@ -80,9 +80,11 @@ public class ViewFrame extends JFrame {
                 String isToDelete = (String) toDeleteComboBox.getSelectedItem();
                 
                 if (isToDelete.equals("Yes")) {
-                    pm.getPhotos().get(curIndex).setToDelete(true);
+                    // pm.getPhotos().get(curIndex).setToDelete(true);
+                    curPhoto.setToDelete(true);
                 } else {
-                    pm.getPhotos().get(curIndex).setToDelete(false);
+                    // pm.getPhotos().get(curIndex).setToDelete(false);
+                    curPhoto.setToDelete(false);
                 }
             }
         });

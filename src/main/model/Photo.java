@@ -23,22 +23,39 @@ public class Photo {
     // EFFECTS: sets a new rating of the Photo
     public void setRating(int rating) {
         this.rating = rating;
+        EventLog.getInstance().logEvent(
+                new Event("Photo with path: " + getPath() + " was given a rating of " + rating)
+        );
     }
 
     // MODIFIES: this
     // EFFECTS: sets the rating to the default inital value of rating
     public void removeRating() {
         this.rating = DEFAULT_RATING;
+
+        EventLog.getInstance().logEvent(
+                new Event("Photo with path: " + getPath() + " got their rating removed")
+        );
     }
 
     // MODIFIES: this
     // EFFECTS: turn on the to be deleted flag.
     public void setToDelete() {
         this.toDelete = true;
+
+        EventLog.getInstance().logEvent(new Event("Photo with path: " + getPath() + " was tagged to be Deleted"));
     }
 
     public void setToDelete(boolean isToDelete) {
         this.toDelete = isToDelete;
+        
+        if (isToDelete) {
+            EventLog.getInstance().logEvent(new Event("Photo with path: " + getPath() + " was tagged to be Deleted"));
+        } else {
+            EventLog.getInstance().logEvent(
+                new Event("Photo with path: " + getPath() + " was tagged to not be Deleted")
+            );
+        }
     }
 
     // MODIFIES: this

@@ -25,6 +25,8 @@ public class PhotoManager {
         if (!lop.contains(p)) {
             this.lop.add(p);
             result = true;
+            
+            EventLog.getInstance().logEvent(new Event("A new photo with path: " + p.getPath() + " was added"));
         }
 
         return result;
@@ -78,6 +80,8 @@ public class PhotoManager {
             }
         }
 
+        // EventLog.getInstance().logEvent(new Event("PhotoManager returned all the photos that is to be deleted"));
+
         return result;
     }
 
@@ -90,6 +94,9 @@ public class PhotoManager {
     public JSONObject toJson() {
         JSONObject res = new JSONObject();
         res.put("lop", lopToJson());
+
+        // EventLog.getInstance().logEvent(new Event("Serialized PhotoManager"));
+        
         return res;
     }
 

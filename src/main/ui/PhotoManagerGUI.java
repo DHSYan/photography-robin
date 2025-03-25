@@ -1,9 +1,13 @@
 package ui;
 
 import java.awt.Dimension;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.*;
 
+import model.Event;
+import model.EventLog;
 import model.PhotoManager;
 
 // Structure of Code and Inspiration came from the following: 
@@ -14,7 +18,7 @@ import model.PhotoManager;
 // - https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html
 
 // PhotoManagerGUI represents the main window frame where the PhotoManager is displayed
-public class PhotoManagerGUI extends JFrame {
+public class PhotoManagerGUI extends JFrame implements WindowListener {
     private PhotoManager pm;
     private MainMenuPanel menu;
 
@@ -29,6 +33,8 @@ public class PhotoManagerGUI extends JFrame {
         menu = new MainMenuPanel(pm);
         add(menu);
         
+        addWindowListener(this);
+        
         setSize(new Dimension(1000,1000));
         pack();
         setVisible(true);
@@ -39,6 +45,54 @@ public class PhotoManagerGUI extends JFrame {
     public static void main(String[] args) {
         new PhotoManagerGUI();
     }
-    
+
+    // Reference: 
+    // The Window event listener referenced: 
+    // https://docs.oracle.com/javase/tutorial/uiswing/events/windowlistener.html
+    @Override
+    public void windowOpened(WindowEvent e) {
+        return;
+    }
+
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        for (Event each : EventLog.getInstance()) {
+            System.out.println(each.getDate() + " : " + each.getDescription());
+        }
+    }
+
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        System.out.print("HI");
+        for (Event each : EventLog.getInstance()) {
+            System.out.println(each.getDate() + ":" + each.getDescription());
+        }
+    }
+
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        return;
+    }
+
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        return;
+    }
+
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        return;
+    }
+
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        return;
+    }
 
 }

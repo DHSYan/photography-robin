@@ -73,4 +73,22 @@ from a file.
 2. Enter the name of the state.
 
 
-
+# Phase 4: Task 2
+Sample Output: 
+```
+Mon Mar 24 17:22:31 PDT 2025:A new photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_1672.JPG was added
+Mon Mar 24 17:22:33 PDT 2025:A new photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_1778.JPG was added
+Mon Mar 24 17:22:34 PDT 2025:A new photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_2221.JPG was added
+Mon Mar 24 17:22:42 PDT 2025:Photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_1672.JPG was tagged to be Deleted
+Mon Mar 24 17:22:48 PDT 2025:Photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_1778.JPG was given a rating of 3
+Mon Mar 24 17:22:53 PDT 2025:Photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_2221.JPG was tagged to be Deleted
+Mon Mar 24 17:22:54 PDT 2025:Photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_2221.JPG was given a rating of 5
+Mon Mar 24 17:23:18 PDT 2025:Photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_1672.JPG was tagged to be Deleted
+Mon Mar 24 17:23:18 PDT 2025:Photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_1672.JPG was given a rating of -1
+Mon Mar 24 17:23:18 PDT 2025:A new photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_1672.JPG was added
+Mon Mar 24 17:23:18 PDT 2025:Photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_1778.JPG was given a rating of 3
+Mon Mar 24 17:23:18 PDT 2025:A new photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_1778.JPG was added
+Mon Mar 24 17:23:18 PDT 2025:Photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_2221.JPG was tagged to be Deleted
+Mon Mar 24 17:23:18 PDT 2025:Photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_2221.JPG was given a rating of 5
+Mon Mar 24 17:23:18 PDT 2025:A new photo with path: /home/tzen/cpsc210/ProjectStarter/photos/IMG_2221.JPG was added
+```

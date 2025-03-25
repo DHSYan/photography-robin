@@ -19,8 +19,8 @@ public class Photo {
     }
 
     // REQUIRES: 0 <= rating <= 5
-    // MODIFIES: this
-    // EFFECTS: sets a new rating of the Photo
+    // MODIFIES: this, EventLog
+    // EFFECTS: sets a new rating of the Photo and logs this event
     public void setRating(int rating) {
         this.rating = rating;
         EventLog.getInstance().logEvent(
@@ -28,7 +28,7 @@ public class Photo {
         );
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, EventLog
     // EFFECTS: sets the rating to the default inital value of rating
     public void removeRating() {
         this.rating = DEFAULT_RATING;
@@ -38,7 +38,7 @@ public class Photo {
         );
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, EventLog
     // EFFECTS: turn on the to be deleted flag.
     public void setToDelete() {
         this.toDelete = true;
@@ -46,6 +46,8 @@ public class Photo {
         EventLog.getInstance().logEvent(new Event("Photo with path: " + getPath() + " was tagged to be Deleted"));
     }
 
+    // MODIFIES: this, EventLog
+    // EFFECTS: sets the to be delete flag to the apporiate value given 
     public void setToDelete(boolean isToDelete) {
         this.toDelete = isToDelete;
         

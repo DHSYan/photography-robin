@@ -17,7 +17,7 @@ public class PhotoManager {
         lop = new ArrayList<Photo>();
     }
 
-    // MODIFIES: this 
+    // MODIFIES: this, EventLog
     // EFFECTS: add Photo to the PhotoManager if it doesn't already exists, 
     //          returns true if photo was added, false otherwise.
     public boolean addPhoto(Photo p) {

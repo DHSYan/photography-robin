@@ -96,3 +96,52 @@ Mon Mar 24 17:23:18 PDT 2025:A new photo with path: /home/tzen/cpsc210/ProjectSt
 # Phase 4: Task 3 
 ![UML Diagram for Phase 4 Task 3](./uml-diagram.jpg)
 
+## Potenial Improvements and Trade Offs
+After reflection upon the UML Diagram, 
+one potenial improvement/refactoring that could be done is 
+abstracting `ViewFrame` and `ViewDeleteFrame` into a general `PhotoFrame`.
+This is because they both render photos,
+with both iterating over a list, fetching photo path, and 
+creating a `JLabel` image. In other words, they 
+only differ in the collection that they iterate over.
+So an abstraction here is the ideal canditate. 
+Hence, one of the ways that the refactoring 
+could be done is:
+
+```java
+public abstract class PhotoFrame extends JFrame {
+
+    public PhotoFrame(List<Photo> photos);
+
+}
+```
+where an abstarct class called `PhotoFrame` is created, that takes
+the list of photos to iterate over. 
+
+Something similar could be said for `LoadFrame` and `SaveFrame`. 
+Both provide a text box for user to enter in the desire path, and 
+performs *some* action. 
+
+A potential fix: 
+```java
+public abstract class SerializeFrame extends JFrame {
+
+    public SerializeFrame(String action);
+
+}
+```
+
+where if `action` is `"w"` it calls `JsonWriter`, and `JsonReader` 
+if it's `"r"` instead.
+
+
+Finally, the field for the `Photo` class in `ViewFrame` could 
+be removed, for a cleaner and clearer code association. 
+
+Currently, the field is used to hold the current photo that the 
+Viewer is displaying. This could easily be changed into a `String` 
+type, where it holds the path to `Photo` instance. And everytime 
+the instance is needed, `PhotoManager.getPhoto(curPhotoPath)` could
+be called. Therefore reducing complexity in association. 
+
+

@@ -97,6 +97,7 @@ Mon Mar 24 17:23:18 PDT 2025:A new photo with path: /home/tzen/cpsc210/ProjectSt
 ![UML Diagram for Phase 4 Task 3](./uml-diagram.jpg)
 
 ## Potenial Improvements and Trade Offs
+### First Change
 After reflection upon the UML Diagram, 
 one potenial improvement/refactoring that could be done is 
 abstracting `ViewFrame` and `ViewDeleteFrame` into a general `PhotoFrame`.
@@ -134,6 +135,7 @@ public abstract class SerializeFrame extends JFrame {
 where if `action` is `"w"` it calls `JsonWriter`, and `JsonReader` 
 if it's `"r"` instead.
 
+### Second Change
 
 Finally, the field for the `Photo` class in `ViewFrame` could 
 be removed, for a cleaner and clearer code association. 
@@ -144,4 +146,19 @@ type, where it holds the path to `Photo` instance. And everytime
 the instance is needed, `PhotoManager.getPhoto(curPhotoPath)` could
 be called. Therefore reducing complexity in association. 
 
+
+## Third Change
+With many classes needing to "observe" `PhotoManager`, 
+the observer design pattern could be applied here. 
+This would elimate many duplication in the code, where 
+`PhotoManager` has to be copied/passed around the code. 
+
+Steps for this refactor: 
+1. Create an abstract class called `Observable` 
+2. Have `PhotoManager` extend `Observable` 
+3. Create an interface called `Observer` with an `void update()` method. 
+4. Have all the class that contains a field of `PhotoManager` 
+implement this interface. 
+5. In `PhotoManager` whenever `this` is modified, notifiy all observer.
+Elimating the need of the field.
 

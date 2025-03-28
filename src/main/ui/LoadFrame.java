@@ -3,11 +3,15 @@ package ui;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+import model.Event;
+import model.EventLog;
 import model.PhotoManager;
 import persistence.JsonReader;
 
@@ -16,7 +20,7 @@ import persistence.JsonReader;
 
 // Load Frame represents the Window that instructs user to load an
 // existing state of the program.
-public class LoadFrame extends JFrame {
+public class LoadFrame extends JFrame implements WindowListener {
     private PhotoManager pm;
     private String fileName;
 
@@ -39,7 +43,10 @@ public class LoadFrame extends JFrame {
             }
         });
 
+
         add(fileNameField);
+
+        addWindowListener(this);
 
         pack();
         setVisible(true);
@@ -62,5 +69,53 @@ public class LoadFrame extends JFrame {
         return status;
     }
 
+    // Reference: 
+    // The Window event listener referenced: 
+    // https://docs.oracle.com/javase/tutorial/uiswing/events/windowlistener.html
+    @Override
+    public void windowOpened(WindowEvent e) {
+        return;
+    }
+
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        for (Event each : EventLog.getInstance()) {
+            System.out.println(each.getDate() + " : " + each.getDescription());
+        }
+    }
+
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        System.out.print("HI");
+        for (Event each : EventLog.getInstance()) {
+            System.out.println(each.getDate() + ":" + each.getDescription());
+        }
+    }
+
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        return;
+    }
+
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        return;
+    }
+
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        return;
+    }
+
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        return;
+    }
 
 }

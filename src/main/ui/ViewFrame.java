@@ -3,6 +3,8 @@ package ui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.JFrame;
 
+import model.EventLog;
+import model.Event;
 import model.Photo;
 import model.PhotoManager;
 
@@ -32,7 +36,7 @@ import model.PhotoManager;
 
 // ViewFrame represents the Frame that cycles through all the photos that 
 // has been added to the photomanager
-public class ViewFrame extends JFrame {
+public class ViewFrame extends JFrame implements WindowListener {
     private final double imageDownScaler = 0.1;
 
     private JPanel pane;
@@ -68,10 +72,13 @@ public class ViewFrame extends JFrame {
             }
         });
 
+
         add(ratingComboBox(), BorderLayout.SOUTH);
         add(toDeleteComboBox(), BorderLayout.WEST);
         add(nextButton, BorderLayout.NORTH);
         add(pane);
+
+        addWindowListener(this);
 
         pack();
         setVisible(true);
@@ -151,4 +158,53 @@ public class ViewFrame extends JFrame {
         repaint();
     }
 
+
+    // Reference: 
+    // The Window event listener referenced: 
+    // https://docs.oracle.com/javase/tutorial/uiswing/events/windowlistener.html
+    @Override
+    public void windowOpened(WindowEvent e) {
+        return;
+    }
+
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        for (Event each : EventLog.getInstance()) {
+            System.out.println(each.getDate() + " : " + each.getDescription());
+        }
+    }
+
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        System.out.print("HI");
+        for (Event each : EventLog.getInstance()) {
+            System.out.println(each.getDate() + ":" + each.getDescription());
+        }
+    }
+
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        return;
+    }
+
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        return;
+    }
+
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        return;
+    }
+
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        return;
+    }
 }

@@ -94,7 +94,7 @@ Mon Mar 24 17:23:18 PDT 2025:A new photo with path: /home/tzen/cpsc210/ProjectSt
 ```
 
 # Phase 4: Task 3 
-![UML Diagram for Phase 4 Task 3](./uml-diagram.jpg)
+![UML Diagram for Phase 4 Task 3](./uml-diagram-with-package.jpg)
 
 ## Potenial Improvements and Trade Offs
 ### First Change
